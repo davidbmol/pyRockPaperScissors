@@ -8,13 +8,13 @@ def parseName(t, player):
 
     if s[0] == player.lower():
         sRes = sItem
-        print("item", sRes)
+        #print("item", sRes)
         return sRes
 
-  if sRes == "":
-    print("parse error: ", player)
-  else:
-    print("item selected:", sRes)
+  #if sRes == "":
+    #print("parse error: ", player)
+  #else:
+    #print("item selected:", sRes)
    
   return sRes
 
@@ -59,9 +59,25 @@ def parseComp(computer, player, t):
             iWin = 1
     else:
         sRes = ("Error. Invalid play.")
-    print(iWin)
+    #print(iWin)
     return sRes, bTie, iWin
 
+#print final
+def parsePrint(countGame,countWon,countLoss,printTime):
+    sT=""
+    print(str("-").center(22,'-'))
+    print("| Games played:",(str(countGame).center(8,' ')),"|")
+    print("| Games won:   ",(str(countWon).center(8,' ')),"|")
+    print("| Games lost:  ",(str(countLoss).center(8,' ')),"|")
+    if printTime[0]>0:
+        sT = str(int(printTime[0]))+"m"
+    #else
+        #time = print("| Time played: ",(str(int(printTime[1])).center(4,' ')),"|")
+    sT+= " "+str(int(printTime[1]))+"s"
+    print("| Time played: ",sT.center(8,' '),"|")
+    
+    print(str("-").center(22,'-'))
+    #return top, play, won, lost, time, bottom
 
 ###
 # Main
@@ -71,20 +87,26 @@ from random import randint
 #from getkey import getkey, keys
 from readchar import readkey, key
 
+
+
 t = ["Rock", "Paper", "Scissors"]
 
-#counter
+#counters
 countGame = 0
 countWon = 0
 countLoss = 0
+endTime=0
 
 
 player = False
 playing = True
+import time
+startTime = time.time()
 
 #print(sRes)
 while playing:
     playing = False
+    
     #while player == False:
     computer = t[randint(0,2)]
     b = True
@@ -105,31 +127,73 @@ while playing:
     isTie = next(a)
     isWin = next(a)
 
+    #timer return
+
+
     print (strRes)
-    ++countGame
+    countGame+=1
     if isTie:
         playing = True
     if isWin>0:
-        ++countWon
+        countWon+=1
+    if isWin<=0:
+        countLoss+=1
+
+    
 
     b = True
     while b:
         b = False
         print("Play again? y/n:")
-        plAg = readkey()
+        plAg = readkey().lower()
+        print(plAg)
         if plAg == "y":
-          playing = True
+            playing = True
         elif plAg == "n":
-            exit()
+            playing = False
         else:
-            print("Error. Invalid response" )
-            b = True
+           print("Error. Invalid response" )
+           b = True
+        
+        #minsTime = int(minutes)
+        #secTime = int(seconds)
+        #printTime = minsTime,secTime
+        #
+    
+    """if playing == False:
+        print(str("-").center(22,'-'))
+        print("| Games played:",(str(countGame).center(4,' ')),"|")
+        print("| Games won:   ",(str(countWon).center(4,' ')),"|")
+        print("| Games lost:  ",(str(countLoss).center(4,' ')),"|")
+        print("| Time played: ",(str(int(printTime[0])).center(4,' ')),(str(int(printTime[1])).center(4,' ')),"|")
+        print(str("-").center(22,'-'))"""
+#exit()
+        
+   
 #end while playing
-print("=====")
+elapTime = endTime - startTime
+printTime = divmod(elapTime, 60)  
+endTime = time.time()    
+parsePrint(countGame,countWon,countLoss,printTime)
+#timer
+""""
+if playing == False:
+    endTime = time.time()
+
+def parseTime(endTime, startTime):
+    elapTime = endTime - startTime
+    minutes, seconds = divmod(elapTime, 60)
+    minsTime = int(minutes)
+    secTime = int(seconds) 
+    printTime = minsTime, secTime    
+    return printTime"""
+
 
 
 # end of code
 exit()
+
+
 
 
 
