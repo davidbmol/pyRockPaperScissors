@@ -103,10 +103,15 @@ while playing:
     a = iter(aRes)
     strRes = next(a)
     isTie = next(a)
+    isWin = next(a)
 
     print (strRes)
+    ++countGame
     if isTie:
         playing = True
+    if isWin>0:
+        ++countWon
+
     b = True
     while b:
         b = False
@@ -119,7 +124,8 @@ while playing:
         else:
             print("Error. Invalid response" )
             b = True
-
+#end while playing
+print("=====")
 
 
 # end of code
