@@ -65,7 +65,7 @@ def parseComp(computer, player, t):
 #print final
 def parsePrint(countGame,countWon,countLoss,printTime):
     sT=""
-    print(str("-").center(22,'-'))
+    print(str("-").center(26,'-'))
     print("| Games played:",(str(countGame).center(8,' ')),"|")
     print("| Games won:   ",(str(countWon).center(8,' ')),"|")
     print("| Games lost:  ",(str(countLoss).center(8,' ')),"|")
@@ -76,8 +76,8 @@ def parsePrint(countGame,countWon,countLoss,printTime):
     sT=sT+ " "+str(int(printTime[1]))+"s"
     print("| Time played: ",sT.center(8,' '),"|")
     
-    print(str("-").center(22,'-'))
-    #return top, play, won, lost, time, bottom
+    print(str("-").center(26,'-'))
+    
 
 ###
 # Main
@@ -86,7 +86,6 @@ def parsePrint(countGame,countWon,countLoss,printTime):
 from random import randint
 #from getkey import getkey, keys
 from readchar import readkey, key
-
 
 
 t = ["Rock", "Paper", "Scissors"]
@@ -125,18 +124,16 @@ while playing:
     a = iter(aRes)
     strRes = next(a)
     isTie = next(a)
-    isWin = next(a)
-
-    #timer return
+    iWin = next(a)
 
 
     print (strRes)
     countGame+=1
     if isTie:
         playing = True
-    if isWin>0:
+    if iWin>0:
         countWon+=1
-    if isWin<=0:
+    if iWin<=0:
         countLoss+=1
 
     
@@ -189,9 +186,9 @@ def parseTime(endTime, startTime):
     printTime = minsTime, secTime    
     return printTime"""
 
-
-
 # end of code
 exit()
+
+
 
 
