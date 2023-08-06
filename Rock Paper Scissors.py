@@ -69,11 +69,11 @@ def parsePrint(countGame,countWon,countLoss,printTime):
     print("| Games played:",(str(countGame).center(8,' ')),"|")
     print("| Games won:   ",(str(countWon).center(8,' ')),"|")
     print("| Games lost:  ",(str(countLoss).center(8,' ')),"|")
-    if printTime[0]>0:
-        sT = str(int(printTime[0]))+"m"
+    #if printTime[0]>0:
+    sT = str(int(printTime[0]))+"m"
     #else
         #time = print("| Time played: ",(str(int(printTime[1])).center(4,' ')),"|")
-    sT+= " "+str(int(printTime[1]))+"s"
+    sT=sT+ " "+str(int(printTime[1]))+"s"
     print("| Time played: ",sT.center(8,' '),"|")
     
     print(str("-").center(22,'-'))
@@ -171,9 +171,10 @@ while playing:
         
    
 #end while playing
+endTime = time.time() 
 elapTime = endTime - startTime
 printTime = divmod(elapTime, 60)  
-endTime = time.time()    
+   
 parsePrint(countGame,countWon,countLoss,printTime)
 #timer
 """"
